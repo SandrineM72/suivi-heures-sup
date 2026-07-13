@@ -1,0 +1,12 @@
+# Système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Exports générés par l'appli (à ne pas versionner)
+heures.xlsx
