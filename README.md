@@ -1,6 +1,6 @@
 # Suivi des heures
 
-Application web **autonome** (un seul fichier `index.html`, aucune dépendance) pour pointer ses heures de travail depuis un smartphone ou un ordinateur, avec calcul automatique des heures supplémentaires et export Excel.
+Application web **autonome** (un seul fichier `index.html`, aucune dépendance) pour pointer ses heures de travail depuis un smartphone, avec calcul automatique des heures supplémentaires et export Excel.
 
 ## Fonctionnalités
 
@@ -13,13 +13,17 @@ Application web **autonome** (un seul fichier `index.html`, aucune dépendance) 
 
 ## Utilisation
 
-Ouvrir `index.html` dans un navigateur (double-clic en local, ou via l'URL déployée). Sur Android : ouvrir l'URL puis « Ajouter à l'écran d'accueil » pour un lancement type application.
+Sur Android : ouvrir l'URL puis « Ajouter à l'écran d'accueil » pour un lancement type application.
 
 > Les données étant stockées dans le navigateur, l'**export Excel** sert aussi de **sauvegarde** (à faire régulièrement).
+> Les données exportées sont copiées-collées dans l'onglet **Saisies** du fichier Excel de suivi global.
+> Une macro permet de récupérer les données dans un **tableau de bord**.
 
 ## Design
 
-Style néo-brutaliste « Pop brutalist » : cadres noirs, ombres portées dures, couleurs vives, typographies Space Grotesk + DM Sans.
+Style « Pop brutalist » : cadres noirs, ombres portées dures, couleurs vives, typographies Space Grotesk + DM Sans.
+
+Accessibilité : contraste respecté en modes clair / sombre
 
 ## Technique
 
@@ -29,7 +33,7 @@ Style néo-brutaliste « Pop brutalist » : cadres noirs, ombres portées dures,
 
 ## Déploiement
 
-Servi en statique derrière **Caddy** sur un VPS, protégé par `basic_auth`, sur le sous-domaine `suivi-heures-sup.culturecook.fr`. Voir le runbook `deploiement-caddy.md`.
+Servi en statique derrière **Caddy** sur un VPS, protégé par `basic_auth`, sur le sous-domaine `suivi-heures-sup.culturecook.fr`.
 
 ## Licence
 
