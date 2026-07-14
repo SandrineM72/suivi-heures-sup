@@ -827,7 +827,7 @@
     return xlsxZip(files);
   }
 
-  document.getElementById("btn-export").addEventListener("click", () => {
+  document.getElementById("btn-export").addEventListener("click", async () => {
     const sorted = [...entries].sort((a,b) => a.date.localeCompare(b.date));
     const journalier = [["Date","Arrivée réelle","Début pause déjeuner","Fin pause déjeuner","Départ réel","Horaire total","Heures supplémentaires"]];
     sorted.forEach(e => {
@@ -855,10 +855,26 @@
       { name:"Suivi journalier", rows: journalier },
       { name:"Récap hebdomadaire", rows: recap },
     ]);
-    const blob = new Blob([bytes], { type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    const filename = "heures.xlsx";
+
+    // 1) Partage natif si disponible (mobile → feuille de partage → WhatsApp, Mail, Drive…)
+    try {
+      const file = new File([bytes], filename, { type: MIME });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: "Suivi des heures" });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === "AbortError") return; // partage annulé par l'utilisateur
+      // toute autre erreur → on bascule sur le téléchargement classique
+    }
+
+    // 2) Repli : téléchargement (desktop, ou navigateur sans partage de fichiers)
+    const blob = new Blob([bytes], { type: MIME });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = "heures.xlsx";
+    a.href = url; a.download = filename;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
