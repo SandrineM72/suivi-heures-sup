@@ -13,11 +13,13 @@ Application web **autonome** (un seul fichier `index.html`, aucune dépendance) 
 
 ## Utilisation
 
-Sur Android : ouvrir l'URL puis « Ajouter à l'écran d'accueil » pour un lancement type application.
+Sur Android : ouvrir l'URL dans Chrome puis « Ajouter à l'écran d'accueil » pour un lancement type application. 
+Grâce à manifest.webmanifest, l'icône de raccourci est personnalisée (image .png créée pour l'appli).
 
-> Les données étant stockées dans le navigateur, l'**export Excel** sert aussi de **sauvegarde** (à faire régulièrement).
-> Les données exportées sont copiées-collées dans l'onglet **Saisies** du fichier Excel de suivi global.
-> Une macro permet de récupérer les données dans un **tableau de bord**.
+- Les données étant stockées dans le navigateur, l'**export Excel** sert aussi de **sauvegarde** (à faire régulièrement).
+- Un clic sur **Exporter / Partager (CSV)** ouvre un écran de partage qui permet d'exporter directement vers WhatsApp
+- Les données exportées sont enregistrées dans un fichier heures.csv
+- Un fichier Excel doté d'Une macro Excel permet de récupérer ces données dans un **tableau de bord**.
 
 ## Design
 
@@ -34,7 +36,3 @@ Accessibilité : contraste respecté en modes clair / sombre
 ## Déploiement
 
 Servi en statique derrière **Caddy** sur un VPS, protégé par `basic_auth`, sur le sous-domaine `suivi-heures-sup.culturecook.fr`.
-
-## Licence
-
-Projet personnel.
